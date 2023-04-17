@@ -1,16 +1,10 @@
-# firstapp
+# quizApp
 
 A new Flutter project.
 
-## Getting Started
+## Description:
+  
+  Simple app to explore how to pass data through multiple widgets.
+  It asks you some questions and assighns score upon your answers, then it shows the result.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
