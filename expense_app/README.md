@@ -1,5 +1,6 @@
 # expense_app
   It can keep trck of your daily expenses and show your recent seven days expenses on a chart.
+  <br/>
   -Functionalities:
     Enter a transaction:
       title, amount, date.
