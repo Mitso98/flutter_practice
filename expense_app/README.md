@@ -1,16 +1,9 @@
 # expense_app
+  It can keep trck of your daily expenses and show your recent seven days expenses on a chart.
+  -Functionalities:
+    Enter a transaction:
+      title, amount, date.
+    Delete a transaction.
+    
+![image](https://user-images.githubusercontent.com/58225491/233124367-7374699f-74a0-4409-9338-e118c1df26bf.png)
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
