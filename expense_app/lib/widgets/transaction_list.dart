@@ -14,9 +14,8 @@ class TransactionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 450,
-      child: userTransaction.isEmpty
+    return LayoutBuilder(builder: (ctx, constraints) {
+      return userTransaction.isEmpty
           ? Column(
               children: [
                 const Text("No transaction added yet!"),
@@ -24,7 +23,7 @@ class TransactionList extends StatelessWidget {
                   height: 10,
                 ),
                 SizedBox(
-                  height: 200,
+                  height: constraints.maxHeight * 0.6,
                   child: Image.asset(
                     "assets/images/waiting.png",
                     fit: BoxFit.cover,
@@ -61,19 +60,33 @@ class TransactionList extends StatelessWidget {
                         userTransaction[index].date,
                       ),
                     ),
-                    trailing: IconButton(
-                      icon: const Icon(
-                        Icons.delete,
-                        color: Colors.red,
-                      ),
-                      onPressed: () => deleteTransaction(
-                        userTransaction[index].id,
-                      ),
-                    ),
+                    trailing: MediaQuery.of(context).size.width > 460
+                        ? TextButton.icon(
+                            label: const Text(
+                              "Delete",
+                              style: TextStyle(color: Colors.red),
+                            ),
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                            ),
+                            onPressed: () => deleteTransaction(
+                              userTransaction[index].id,
+                            ),
+                          )
+                        : IconButton(
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                            ),
+                            onPressed: () => deleteTransaction(
+                              userTransaction[index].id,
+                            ),
+                          ),
                   ),
                 );
               },
-            ),
-    );
+            );
+    });
   }
 }
