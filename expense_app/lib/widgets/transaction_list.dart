@@ -1,9 +1,12 @@
+import 'dart:math';
+
+import 'package:expense_app/widgets/transaction_item.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
 
 import '../models/transaction.dart';
 
-class TransactionList extends StatelessWidget {
+class TransactionList extends StatefulWidget {
   final Function deleteTransaction;
   final List<Transaction> userTransaction;
   const TransactionList({
@@ -13,9 +16,21 @@ class TransactionList extends StatelessWidget {
   });
 
   @override
+  State<TransactionList> createState() => _TransactionListState();
+}
+
+class _TransactionListState extends State<TransactionList> {
+  final List<Color> _colors = [
+    Colors.red,
+    Colors.blue,
+    Colors.green,
+    Colors.yellow,
+  ];
+
+  @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (ctx, constraints) {
-      return userTransaction.isEmpty
+      return widget.userTransaction.isEmpty
           ? Column(
               children: [
                 const Text("No transaction added yet!"),
@@ -32,58 +47,15 @@ class TransactionList extends StatelessWidget {
               ],
             )
           : ListView.builder(
-              itemCount: userTransaction.length,
+              itemCount: widget.userTransaction.length,
               itemBuilder: (ctx, index) {
-                return Card(
-                  elevation: 5,
-                  margin: const EdgeInsets.symmetric(
-                    vertical: 8,
-                    horizontal: 5,
-                  ),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 30,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: FittedBox(
-                            child: Text(
-                          "\$${userTransaction[index].amount}",
-                        )),
-                      ),
-                    ),
-                    title: Text(
-                      userTransaction[index].title,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    subtitle: Text(
-                      DateFormat.yMMMd().format(
-                        userTransaction[index].date,
-                      ),
-                    ),
-                    trailing: MediaQuery.of(context).size.width > 460
-                        ? TextButton.icon(
-                            label: const Text(
-                              "Delete",
-                              style: TextStyle(color: Colors.red),
-                            ),
-                            icon: const Icon(
-                              Icons.delete,
-                              color: Colors.red,
-                            ),
-                            onPressed: () => deleteTransaction(
-                              userTransaction[index].id,
-                            ),
-                          )
-                        : IconButton(
-                            icon: const Icon(
-                              Icons.delete,
-                              color: Colors.red,
-                            ),
-                            onPressed: () => deleteTransaction(
-                              userTransaction[index].id,
-                            ),
-                          ),
-                  ),
+                return TransactionItem(
+                  amount: widget.userTransaction[index].amount,
+                  title: widget.userTransaction[index].title,
+                  date: widget.userTransaction[index].date,
+                  id: widget.userTransaction[index].id,
+                  deleteTransaction: widget.deleteTransaction,
+                  bgColor: _colors[Random().nextInt(_colors.length)],
                 );
               },
             );
