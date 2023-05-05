@@ -34,6 +34,7 @@ class _MoviesPageState extends State<MoviesPage> {
         .timeout(const Duration(seconds: 5));
     if (response.statusCode == 200) {
       final Map<String, dynamic> json = jsonDecode(response.body);
+      print(Movie.fromJson(json));
       return Movie.fromJson(json);
     } else {
       throw Exception('Failed to fetch movie');
